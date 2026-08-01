@@ -2,7 +2,7 @@
 class Mduct < Formula
   desc "Every MCP server as a Unix tool: pipe it, script it, run it by hand"
   homepage "https://github.com/TheFox666/mduct"
-  version "0.0.0-kaputt"
+  version "0.5.1"
   license "MIT"
 
   on_macos do
