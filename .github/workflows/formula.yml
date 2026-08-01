@@ -1,0 +1,50 @@
+name: follow mduct releases
+
+# The tap updates itself. No token: a workflow writing to its OWN repository uses
+# the built-in GITHUB_TOKEN, and mduct's releases are public, so reading them
+# needs no credentials either. A cross-repo push would have needed a PAT that
+# expires and then silently leaves brew a version behind.
+on:
+  schedule:
+    - cron: "17 */6 * * *"   # four times a day, off the hour so it isn't queued with everyone else
+  workflow_dispatch:          # or press the button right after a release
+
+permissions:
+  contents: write
+
+jobs:
+  formula:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: check out mduct for its formula generator
+        uses: actions/checkout@v4
+        with:
+          repository: TheFox666/mduct
+          path: .mduct
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: regenerate the formula from the latest published release
+        working-directory: .mduct
+        env:
+          MDUCT_TAP: ${{ github.workspace }}
+        run: |
+          bun install --frozen-lockfile
+          bun run formula          # no argument: takes the latest published release
+
+      - name: commit if it changed
+        run: |
+          rm -rf .mduct
+          if git diff --quiet -- Formula; then
+            echo "formula already matches the latest release — nothing to do"
+            exit 0
+          fi
+          v="$(grep -oP '(?<=^  version ")[^"]+' Formula/mduct.rb)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "mduct $v"
+          git push
