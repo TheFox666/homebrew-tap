@@ -2,28 +2,28 @@
 class Mduct < Formula
   desc "Every MCP server as a Unix tool: pipe it, script it, run it by hand"
   homepage "https://github.com/TheFox666/mduct"
-  version "0.6.0"
+  version "0.7.0"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/TheFox666/mduct/releases/download/v0.6.0/mduct-darwin-arm64"
-      sha256 "4b2dd9a5148ae9b5f1a102e4ede182fccd48ea493a56b19990f3f746060f2269"
+      url "https://github.com/TheFox666/mduct/releases/download/v0.7.0/mduct-darwin-arm64"
+      sha256 "8834d87a021da140688b51b34aa68f1275546f5cc2938a68645bca1780b66265"
     end
     on_intel do
-      url "https://github.com/TheFox666/mduct/releases/download/v0.6.0/mduct-darwin-x64"
-      sha256 "ca5501990d8cb686df2288e91c2b8ec5a80ad2d62f50465bfba7250a20e22b24"
+      url "https://github.com/TheFox666/mduct/releases/download/v0.7.0/mduct-darwin-x64"
+      sha256 "0e2a89b40fff8003a21b2994b49c59dbc6e90d72ae701ea939da2b3c493c0e33"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/TheFox666/mduct/releases/download/v0.6.0/mduct-linux-arm64"
-      sha256 "edf5f097bfdf917a4c3030c1a0199bb731936c8c7fe4393fe15e4c867b6edaad"
+      url "https://github.com/TheFox666/mduct/releases/download/v0.7.0/mduct-linux-arm64"
+      sha256 "49a581fe1c7782b852c0583dea86741a2fbc126c0d482a2a7ef11dbe528c1642"
     end
     on_intel do
-      url "https://github.com/TheFox666/mduct/releases/download/v0.6.0/mduct-linux-x64"
-      sha256 "7967d8ae694a9d885d4654d47d55bb220885e54e0d183334eccacdad4a9074f5"
+      url "https://github.com/TheFox666/mduct/releases/download/v0.7.0/mduct-linux-x64"
+      sha256 "d216b1c414080521b3cc932f0982986ac4ad1f56536e628039b6f24bb53de4a8"
     end
   end
 
